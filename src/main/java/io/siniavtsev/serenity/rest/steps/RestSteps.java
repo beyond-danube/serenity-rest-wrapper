@@ -1,6 +1,7 @@
 package io.siniavtsev.serenity.rest.steps;
 
 import io.restassured.http.ContentType;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.siniavtsev.serenity.rest.config.EnvironmentConfig;
@@ -27,6 +28,11 @@ public class RestSteps {
 
     public RestSteps() {
         applyDefaults();
+    }
+
+    @Step
+    public void addHeader(String name, String value) {
+        request.header(new Header(name, value));
     }
 
     @Step
@@ -120,10 +126,21 @@ public class RestSteps {
     }
 
     @Step
+    public void setBaseUri(String baseUri) {
+        request.baseUri(baseUri);
+    }
+
+    @Step
+    public void setBasePath(String basePath) {
+        request.baseUri(basePath);
+    }
+
+    @Step
     public void setContentType(String contentType) {
         request.contentType(contentType);
     }
 
+    @Step
     public void setContentType(ContentType contentType) {
         request.contentType(contentType);
     }
