@@ -75,6 +75,11 @@ public class RestSteps {
         return request.post(endpoint);
     }
 
+    @Step("PUT request")
+    public Response getPutResponse() {
+        return request.put(endpoint);
+    }
+
     @Step("PATCH request")
     public Response getPatchResponse() {
         return request.patch(endpoint);
@@ -95,6 +100,10 @@ public class RestSteps {
         return getPostResponse().as(targetType);
     }
 
+    @Step("Response from PUT request as object: {0}")
+    public <T> T getPutResponseObject(Class<T> targetType) {
+        return getPutResponse().as(targetType);
+    }
     @Step("Response from PATCH request as object: {0}")
     public <T> T getPatchResponseObject(Class<T> targetType) {
         return getPatchResponse().as(targetType);
@@ -113,6 +122,11 @@ public class RestSteps {
     @Step("Response from POST request as list of objects: {0}")
     public <T> List<T> getPostResponseObjectsList(Class<T> targetType) {
         return getPostResponse().jsonPath().getList(".", targetType);
+    }
+
+    @Step("Response from POST request as list of objects: {0}")
+    public <T> List<T> getPutResponseObjectsList(Class<T> targetType) {
+        return getPutResponse().jsonPath().getList(".", targetType);
     }
 
     @Step("Response from PATCH request as list of objects: {0}")
