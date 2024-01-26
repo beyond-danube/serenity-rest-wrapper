@@ -12,11 +12,11 @@
 
     <name>Serenity REST Wrapper</name>
     <description>Commonly used REST calls using Serenity BDD</description>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/beyond-danube/serenity-rest-wrapper</url>
 
     <groupId>io.siniavtsev</groupId>
     <artifactId>serenity-rest-wrapper</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <licenses>
