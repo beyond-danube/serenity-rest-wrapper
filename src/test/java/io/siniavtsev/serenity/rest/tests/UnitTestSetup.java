@@ -14,14 +14,13 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 
 public class UnitTestSetup {
 
-    static WireMockServer wireMockServer = new WireMockServer();
+    protected static WireMockServer wireMockServer = new WireMockServer();
     protected RestSteps restSteps = new RestSteps();
     WireMockEnvConfig envConfig = new WireMockEnvConfig();
 
     @RegisterExtension
-    static WireMockExtension wireMockConfig = WireMockExtension.newInstance()
+    protected static WireMockExtension wireMockConfig = WireMockExtension.newInstance()
             .options(wireMockConfig().port(3000))
-            .configureStaticDsl(true)
             .build();
 
     @BeforeAll

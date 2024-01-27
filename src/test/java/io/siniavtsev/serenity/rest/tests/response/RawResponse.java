@@ -15,7 +15,7 @@ public class RawResponse extends UnitTestSetup {
     @Test
     void getResponse() {
 
-        stubFor(get(urlEqualTo(ENDPOINT))
+        wireMockConfig.stubFor(get(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withBody(RESPONSE_BODY)));
@@ -30,7 +30,7 @@ public class RawResponse extends UnitTestSetup {
     @Test
     void postResponse() {
 
-        stubFor(post(urlEqualTo(ENDPOINT))
+        wireMockConfig.stubFor(post(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -47,7 +47,7 @@ public class RawResponse extends UnitTestSetup {
     @Test
     void putResponse() {
 
-        stubFor(put(urlEqualTo(ENDPOINT))
+        wireMockConfig.stubFor(put(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -64,7 +64,7 @@ public class RawResponse extends UnitTestSetup {
     @Test
     void patchResponse() {
 
-        stubFor(patch(urlEqualTo(ENDPOINT))
+        wireMockConfig.stubFor(patch(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -81,7 +81,7 @@ public class RawResponse extends UnitTestSetup {
     @Test
     void deleteResponse() {
 
-        stubFor(delete(urlEqualTo(ENDPOINT))
+        wireMockConfig.stubFor(delete(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withBody(RESPONSE_BODY)));
