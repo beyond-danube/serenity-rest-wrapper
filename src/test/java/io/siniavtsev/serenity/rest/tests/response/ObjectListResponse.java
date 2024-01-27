@@ -23,7 +23,7 @@ public class ObjectListResponse extends UnitTestSetup {
     @Test
     void getResponse() {
 
-        wireMockInstance.stubFor(get(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(get(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")

@@ -11,25 +11,26 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
 @WireMockTest
 public class UnitTestSetup {
 
-    protected static WireMockServer wireMockServer = new WireMockServer();
-
-    @RegisterExtension
-    protected static WireMockExtension wireMockInstance = WireMockExtension.newInstance()
-            .options(wireMockConfig().dynamicPort().dynamicHttpsPort())
-            .build();
+    protected static WireMockServer wireMockServer = new WireMockServer(options().dynamicPort());
     static WireMockEnvConfig envConfig = new WireMockEnvConfig();
 
     protected RestSteps restSteps = new RestSteps();
 
+    @RegisterExtension
+    protected static WireMockExtension wireMockExtension = WireMockExtension.newInstance()
+            .options(wireMockConfig().dynamicPort())
+            .build();
+
     @BeforeAll
     static void globalSetup() {
         wireMockServer.start();
-        envConfig.setPort(String.valueOf(wireMockInstance.getPort()));
+        envConfig.setPort(String.valueOf(wireMockExtension.getPort()));
     }
 
     @AfterAll
@@ -40,10 +41,11 @@ public class UnitTestSetup {
     @BeforeEach
     void restTestSetup() {
         restSteps.setDefaultsFromEnvironmentConfig(envConfig);
+        System.out.println(envConfig.getBaseUri());
     }
 
     @AfterEach
     void restTestCleanup() {
-        wireMockInstance.resetAll();
+        wireMockServer.resetAll();
     }
 }

@@ -16,7 +16,7 @@ public class ObjectResponse extends UnitTestSetup {
     @Test
     void getResponse() {
 
-        wireMockInstance.stubFor(get(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(get(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -31,7 +31,7 @@ public class ObjectResponse extends UnitTestSetup {
     @Test
     void postResponse() {
 
-        wireMockInstance.stubFor(post(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(post(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -48,7 +48,7 @@ public class ObjectResponse extends UnitTestSetup {
     @Test
     void putResponse() {
 
-        wireMockInstance.stubFor(put(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(put(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -65,7 +65,7 @@ public class ObjectResponse extends UnitTestSetup {
     @Test
     void patchResponse() {
 
-        wireMockInstance.stubFor(patch(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(patch(urlEqualTo(ENDPOINT))
                 .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -82,7 +82,7 @@ public class ObjectResponse extends UnitTestSetup {
     @Test
     void deleteResponse() {
 
-        wireMockInstance.stubFor(delete(urlEqualTo(ENDPOINT))
+        wireMockExtension.stubFor(delete(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
