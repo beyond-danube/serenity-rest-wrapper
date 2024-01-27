@@ -2,20 +2,18 @@ package io.siniavtsev.serenity.rest.tests;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.siniavtsev.serenity.rest.config.WireMockEnvConfig;
 import io.siniavtsev.serenity.rest.steps.RestSteps;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
-@ExtendWith(SerenityJUnit5Extension.class)
+@WireMockTest
 public class UnitTestSetup {
 
     protected static WireMockServer wireMockServer = new WireMockServer();
@@ -25,8 +23,8 @@ public class UnitTestSetup {
             .options(wireMockConfig().dynamicPort().dynamicHttpsPort())
             .build();
     static WireMockEnvConfig envConfig = new WireMockEnvConfig();
-    @Steps
-    protected RestSteps restSteps;
+
+    protected RestSteps restSteps = new RestSteps();
 
     @BeforeAll
     static void globalSetup() {
