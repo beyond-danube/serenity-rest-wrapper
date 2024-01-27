@@ -40,6 +40,6 @@ public class UnitTestSetup {
 
     @AfterEach
     void restTestCleanup() {
-        wireMockServer.resetAll();
+        wireMockConfig.resetAll();
     }
 }
