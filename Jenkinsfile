@@ -4,7 +4,7 @@ pipeline {
         MAVEN_OPTS = "--illegal-access=warn --add-opens=java.base/java.lang=ALL-UNNAMED"
     }
     stages {
-        stage('Run REST tests') {
+        stage('Build') {
             steps {
                 sh 'mvn clean verify -Dgpg.skip'
             }
