@@ -1,13 +1,19 @@
 package io.siniavtsev.serenity.rest.config;
 
 public class WireMockEnvConfig implements EnvironmentConfig {
-    @Override
-    public String getBaseUri() {
-        return "http://localhost:3000";
-    }
+    static String port;
 
     @Override
     public String getBasePath() {
         return "";
+    }
+
+    @Override
+    public String getBaseUri() {
+        return "http://localhost:" + port;
+    }
+
+    public void setPort(String port) {
+        WireMockEnvConfig.port = port;
     }
 }
