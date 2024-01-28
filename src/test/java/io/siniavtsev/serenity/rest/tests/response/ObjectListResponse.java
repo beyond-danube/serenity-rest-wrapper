@@ -34,4 +34,70 @@ public class ObjectListResponse extends UnitTestSetup {
 
         assertThat(result).hasSameElementsAs(RESPONSE_BODY);
     }
+
+    @Test
+    void postResponse() {
+
+        wireMockExtension.stubFor(post(urlEqualTo(ENDPOINT))
+                .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(RESPONSE_BODY.toJson())));
+
+        restSteps.setEndpoint(ENDPOINT);
+        restSteps.setRequestBody(REQUEST_BODY);
+        var result = restSteps.getPostResponseObjectsList(User.class);
+
+        assertThat(result).hasSameElementsAs(RESPONSE_BODY);
+    }
+
+    @Test
+    void putResponse() {
+
+        wireMockExtension.stubFor(put(urlEqualTo(ENDPOINT))
+                .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(RESPONSE_BODY.toJson())));
+
+        restSteps.setEndpoint(ENDPOINT);
+        restSteps.setRequestBody(REQUEST_BODY);
+        var result = restSteps.getPutResponseObjectsList(User.class);
+
+        assertThat(result).hasSameElementsAs(RESPONSE_BODY);
+    }
+
+    @Test
+    void patchResponse() {
+
+        wireMockExtension.stubFor(patch(urlEqualTo(ENDPOINT))
+                .withRequestBody(equalToJson(REQUEST_BODY.toJson()))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(RESPONSE_BODY.toJson())));
+
+        restSteps.setEndpoint(ENDPOINT);
+        restSteps.setRequestBody(REQUEST_BODY);
+        var result = restSteps.getPatchResponseObjectsList(User.class);
+
+        assertThat(result).hasSameElementsAs(RESPONSE_BODY);
+    }
+
+    @Test
+    void deleteResponse() {
+
+        wireMockExtension.stubFor(delete(urlEqualTo(ENDPOINT))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(RESPONSE_BODY.toJson())));
+
+        restSteps.setEndpoint(ENDPOINT);
+        var result = restSteps.getDeleteResponseObjectsList(User.class);
+
+        assertThat(result).hasSameElementsAs(RESPONSE_BODY);
+    }
 }
