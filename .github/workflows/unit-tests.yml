@@ -1,13 +1,16 @@
 name: Run Tests
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
+permissions:
+  actions: write
+  checks: write
+  pull-requests: write
+
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
